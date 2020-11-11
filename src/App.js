@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, View, Text} from 'react-native';
-import {main} from './styles';
+import {main, todo_input} from './styles';
 import {TodoInput} from './components';
 
 const App = () => {
@@ -10,9 +10,8 @@ const App = () => {
         <View style={main.banner}>
           <Text style={main.todoText}>TODO</Text>
           <Text style={main.todoCount}>10</Text>
-         
         </View>
-        <TodoInput />
+        <TodoInput onTodoEnter={(todoText) => alert(todoText)} />
       </View>
     </SafeAreaView>
   );
