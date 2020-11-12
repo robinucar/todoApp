@@ -47,12 +47,10 @@ const App = () => {
     <SafeAreaView style={main.container}>
       <KeyboardAvoidingView style={main.container} behavior="padding">
         <View style={main.container}>
-          <View style={main.banner}>
-            <Text style={main.todoText}>TODO</Text>
-            <Text style={main.todoCount}>
-              {list.filter(t => t.isDone === false).length}
-            </Text>
-          </View>
+        <View style={main.banner}>
+                    <Text style={main.todoText}>TODO</Text>
+                    <Text style={main.todoCount}>{Object.values(list).filter(t => t.isDone === false).length}</Text>
+                </View>
 
           <FlatList
             keyExtractor={(item, index) => index.toString()}
