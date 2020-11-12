@@ -34,7 +34,11 @@ const App = () => {
             <Text style={main.todoCount}>{list.length}</Text>
           </View>
 
-          <FlatList data={list} renderItem={renderTodo} />
+          <FlatList
+            keyExtractor={(item, index) => index.toString()}
+            data={list}
+            renderItem={renderTodo}
+          />
 
           <TodoInput onTodoEnter={(todoText) => addTodo(todoText)} />
         </View>
