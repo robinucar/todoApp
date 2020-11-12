@@ -25,10 +25,10 @@ const App = () => {
 
   const doneTodo = (todoId) => {
     const newArray = [...list];
-    const todoIndex = newArray.findIndex(item => item.id === todoId);
+    const todoIndex = newArray.findIndex((item) => item.id === todoId);
 
-      newArray[todoIndex].isDone = !newArray[todoIndex].isDone;
-      setList(newArray);
+    newArray[todoIndex].isDone = !newArray[todoIndex].isDone;
+    setList(newArray);
   };
 
   const renderTodo = ({item}) => (
@@ -41,7 +41,9 @@ const App = () => {
         <View style={main.container}>
           <View style={main.banner}>
             <Text style={main.todoText}>TODO</Text>
-            <Text style={main.todoCount}>{list.length}</Text>
+            <Text style={main.todoCount}>
+              {list.filter((t) => t.isDone === false).length}
+            </Text>
           </View>
 
           <FlatList
