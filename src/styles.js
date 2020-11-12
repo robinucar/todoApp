@@ -20,6 +20,10 @@ const main = StyleSheet.create({
     fontSize: 35,
     color: '#dd9b31',
   },
+  emptyComponent: {
+    color: 'white',
+    textAlign: 'center',
+  },
 });
 
 const todo_input = StyleSheet.create({

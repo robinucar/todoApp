@@ -38,6 +38,7 @@ const App = () => {
             keyExtractor={(item, index) => index.toString()}
             data={list}
             renderItem={renderTodo}
+            ListEmptyComponent={() => <Text style={main.emptyComponent}>No thing to do...</Text>}
           />
 
           <TodoInput onTodoEnter={(todoText) => addTodo(todoText)} />
