@@ -14,7 +14,7 @@ const App = () => {
 
   const addTodo = (todo) => {
     const todoElm = {
-      id: list.length,
+      id: list.length * list.length,
       todo,
       isDone: false,
     };
@@ -31,8 +31,16 @@ const App = () => {
     setList(newArray);
   };
 
+  const removeTodo = (todoId) => {
+    const newArray = [...list];
+    const todoIndex = list.findIndex((t) => t.id === todoId);
+    newArray.splice(todoIndex, 1);
+
+    setList(newArray);
+  };
+
   const renderTodo = ({item}) => (
-    <TodoCart data={item} onDone={(id) => doneTodo(id)} />
+    <TodoCart data={item} onDone={(id) => doneTodo(id)} onRemove={removeTodo} />
   );
 
   return (
@@ -42,7 +50,7 @@ const App = () => {
           <View style={main.banner}>
             <Text style={main.todoText}>TODO</Text>
             <Text style={main.todoCount}>
-              {list.filter((t) => t.isDone === false).length}
+              {list.filter(t => t.isDone === false).length}
             </Text>
           </View>
 
