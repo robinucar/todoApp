@@ -1,18 +1,44 @@
-import React from 'react';
-import {SafeAreaView, View, Text} from 'react-native';
+import React, {useState} from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  FlatList,
+  KeyboardAvoidingView,
+} from 'react-native';
 import {main, todo_input} from './styles';
-import {TodoInput} from './components';
+import {TodoInput, TodoCart} from './components';
 
 const App = () => {
+  const [list, setList] = useState('');
+
+  const addTodo = (todo) => {
+    const todoElm = {
+      id: list.length,
+      todo,
+      isDone: false,
+    };
+
+    const newArray = [todoElm, ...list];
+    setList(newArray);
+  };
+
+  const renderTodo = ({item}) => <TodoCart data={item} />;
+
   return (
     <SafeAreaView style={main.container}>
-      <View style={main.container}>
-        <View style={main.banner}>
-          <Text style={main.todoText}>TODO</Text>
-          <Text style={main.todoCount}>10</Text>
+      <KeyboardAvoidingView style={main.container} behavior="padding">
+        <View style={main.container}>
+          <View style={main.banner}>
+            <Text style={main.todoText}>TODO</Text>
+            <Text style={main.todoCount}>{list.length}</Text>
+          </View>
+
+          <FlatList data={list} renderItem={renderTodo} />
+
+          <TodoInput onTodoEnter={(todoText) => addTodo(todoText)} />
         </View>
-        <TodoInput onTodoEnter={(todoText) => alert(todoText)} />
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
